@@ -8,8 +8,7 @@ while true; do
     DT=$(date +"%Y-%m-%d %H:%M:%S")
     TX=$($AIRPORT_UTIL -I | grep lastTxRate | cut -d: -f2 | sed 's/ //')
     if [ -z "$TX" ]; then
-        MSG="$DT No wifi signal"
-        osascript -e "display notification \"$MSG\" with title \"$TITLE\""
+        echo "$DT no wifi signal"
     elif [ "$TX" -lt 150 ]; then
         MSG="$DT Weak wifi signal ($TX Mbps), resetting wifi!"
         osascript -e "display notification \"$MSG\" with title \"$TITLE\""
